@@ -1,0 +1,51 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Bloomy"
+run/main_scene="res://Scenes/Splashscreen/godotSplashscreen.tscn"
+config/features=PackedStringArray("4.1", "Forward Plus")
+boot_splash/show_image=false
+config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
+
+[audio]
+
+buses/default_bus_layout="res://audioBuses.tres"
+
+[autoload]
+
+GlobalVariables="*res://Scripts/GlobalVariables.gd"
+
+[debug]
+
+gdscript/warnings/integer_division=0
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=736
+window/stretch/mode="canvas_items"
+
+[dotnet]
+
+project/assembly_name="2023KickOffGamejam"
+
+[layer_names]
+
+2d_physics/layer_1="RegularCollision"
+2d_physics/layer_2="OneWayFloor"
+2d_physics/layer_3="OneWayRHS"
+2d_physics/layer_4="OneWayLHS"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"

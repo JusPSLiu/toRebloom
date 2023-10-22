@@ -1,0 +1,8 @@
+res://Scenes/Levels/garden_level.tscn
+res://Scenes/PauseMenu.tscn
+res://Scenes/MainMenu.tscn
+res://Scenes/transition_to_black.tscn
+res://audioBuses.tres
+res://Scripts/PauseMenu.gd
+res://Scenes/Levels/PlayerCharacter.gd
+res://Scenes/Levels/DialogueController.gd
