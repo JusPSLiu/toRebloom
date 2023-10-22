@@ -63,7 +63,7 @@ func changeCurrentDialogue():
 	#reset the visibility
 	text.visible_characters = 0
 	textCurrentlyDisplayed = 0
-	if (currentDialogue < 8):
+	if (currentDialogue != 8 && currentDialogue < 12):
 		dialoguePlayer.set_stream(load("res://Sounds/dialogue/dia"+(str(currentDialogue))+".ogg"))
 		dialoguePlayer.play()
 	# update the dialogue
@@ -92,7 +92,18 @@ func changeCurrentDialogue():
 		7:
 			text.text = "Alright then."
 			setSpeaker(1)
-		8:
+		#8 is close
+		9:
+			text.text = "You know, once, this land was as bright and vibrant as any organic light-emitting diode."
+			setSpeaker(0)
+		10:
+			text.text = "(sigh) Now, those days are gone. The Reblooming must occur."
+			setSpeaker(0)
+		11:
+			text.text = "Alright, continue your mission."
+			setSpeaker(1)
+		#12 is close
+		_:
 			closeDialogue()
 
 
