@@ -1,8 +1,8 @@
+AudioStreamPlayer
 Label
 Polygon2D
 Node2D
 Button
-AudioStreamPlayer
 AudioStreamPlayer2D
 CanvasLayer
 RichTextLabel

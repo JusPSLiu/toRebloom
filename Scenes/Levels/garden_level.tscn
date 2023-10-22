@@ -256,6 +256,7 @@ text = "II"
 [node name="Music" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("1_rdnp1")
+volume_db = -6.0
 autoplay = true
 bus = &"Music"
 

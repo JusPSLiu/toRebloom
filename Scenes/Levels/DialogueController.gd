@@ -63,7 +63,9 @@ func changeCurrentDialogue():
 	#reset the visibility
 	text.visible_characters = 0
 	textCurrentlyDisplayed = 0
-	
+	if (currentDialogue < 8):
+		dialoguePlayer.set_stream(load("res://Sounds/dialogue/dia"+(str(currentDialogue))+".ogg"))
+		dialoguePlayer.play()
 	# update the dialogue
 	match(currentDialogue):
 		0:
@@ -73,21 +75,24 @@ func changeCurrentDialogue():
 			text.text = "Huh? Yeah?"
 			setSpeaker(1)
 		2:
-			text.text = "You have to complete this mission."
+			text.text = "You, and only you, must complete this mission."
 			setSpeaker(0)
 		3:
 			text.text = "You've done the least of all of us, on account of your hearing problems, and as such you're not on their watchlist."
 			setSpeaker(0)
 		4:
-			text.text = "Listen, I don't like this any more than you do, but at this point, we have little other choice."
+			text.text = "Listen, I don't like this plan any more than you do, but at this point, we have little other choice."
 			setSpeaker(0)
 		5:
-			text.text = "Head out there, for the fate of the world rests upon your back."
+			text.text = "The Reblooming must occur."
 			setSpeaker(0)
 		6:
+			text.text = "Head out there, for the fate of the world rests upon your back."
+			setSpeaker(0)
+		7:
 			text.text = "Alright then."
 			setSpeaker(1)
-		7:
+		8:
 			closeDialogue()
 
 
