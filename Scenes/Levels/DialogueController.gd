@@ -6,6 +6,7 @@ extends ColorRect
 @export var dialoguePlayer : AudioStreamPlayer
 @export var lettersPerSecond : float
 @export var currentDialogue : int
+@export var PauseMenu : Control
 
 var textCurrentlyDisplayed : float
 var loadingIn : bool
@@ -45,6 +46,11 @@ func setSpeaker(speaker : int):
 			speakerName.text = "Scientist"
 
 func closeDialogue():
+	#activate the UI
+	PauseMenu.process_mode = Node.PROCESS_MODE_ALWAYS
+	PauseMenu.actvatePauseButton()
+	
+	#unpause the game
 	get_tree().paused = false
 	queue_free()
 

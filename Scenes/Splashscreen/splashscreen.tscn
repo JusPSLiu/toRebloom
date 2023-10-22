@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://ccs22qkiaiv6t"]
+[gd_scene load_steps=18 format=3 uid="uid://ccs22qkiaiv6t"]
 
 [ext_resource type="Script" path="res://Scripts/splashscreen.gd" id="1_h2a05"]
 [ext_resource type="Texture2D" uid="uid://c3udq7qqde8pn" path="res://Art/Splashscreen/UNCC/C.png" id="3_6de1e"]
@@ -975,11 +975,40 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_nfksw"]
+resource_name = "fadeActuallyToBlack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.33, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vs7dw"]
 _data = {
 "FadeFastFromBlack": SubResource("Animation_k6vcr"),
 "FadeFromBlack": SubResource("Animation_b7yoc"),
-"FadeToBlack": SubResource("Animation_ohoh7")
+"FadeToBlack": SubResource("Animation_ohoh7"),
+"fadeActuallyToBlack": SubResource("Animation_nfksw")
 }
 
 [node name="splashscreen" type="Control" node_paths=PackedStringArray("splashscreenAnimation", "transitionToBlack", "buttonSound", "SkipButton")]

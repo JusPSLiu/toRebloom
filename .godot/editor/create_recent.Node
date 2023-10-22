@@ -1,8 +1,10 @@
+Label
+Polygon2D
+Node2D
+Button
 AudioStreamPlayer
 AudioStreamPlayer2D
 CanvasLayer
-Button
-Label
 RichTextLabel
 ColorRect
 AnimationPlayer
@@ -17,11 +19,9 @@ TextureRect
 CollisionShape2D
 CharacterBody2D
 TileMap
-Node2D
 LightOccluder2D
 DirectionalLight2D
 Bone2D
 Skeleton2D
-Polygon2D
 CPUParticles2D
 TextureButton

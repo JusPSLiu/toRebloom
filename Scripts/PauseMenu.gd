@@ -6,6 +6,8 @@ signal close_settings
 @export var soundPlayer : AudioStreamPlayer
 @export var buttonSoundPlayer : AudioStreamPlayer
 @export var musicSlider : HSlider
+@export var pauseButton : Button
+@export var transition : AnimationPlayer
 
 #settingUp variable so when loading, doesn't play sounds
 var settingUp : bool = true
@@ -58,8 +60,18 @@ func togglePauseFall():
 	buttonSoundPlayer.play()
 	get_tree().paused = !get_tree().paused
 	visible = !visible
+	if (get_tree().paused):
+		pauseButton.text = "▶"
+	else:
+		pauseButton.text = "II"
 
 
 func _on_title_pressed():
 	get_tree().paused = false
+	transition.play("SlideToBlack")
+	await transition.animation_finished
 	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
+
+func actvatePauseButton():
+	pauseButton.show();
+	pauseButton.process_mode = Node.PROCESS_MODE_ALWAYS

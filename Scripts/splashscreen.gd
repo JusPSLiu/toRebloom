@@ -13,7 +13,7 @@ var skipVisible : bool = false
 func _ready():
 	splashscreenAnimation.play("start")
 	await splashscreenAnimation.animation_finished
-	transitionToBlack.play("FadeToBlack")
+	transitionToBlack.play("fadeActuallyToBlack")
 	await transitionToBlack.animation_finished
 	get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")
 
@@ -27,7 +27,7 @@ func _process(delta):
 
 func _input(event : InputEvent):
 	if (event is InputEventKey and event.keycode == KEY_ESCAPE) or (event is InputEventMouseButton and event.is_double_click()):
-			transitionToBlack.play("FadeToBlack")
+			transitionToBlack.play("fadeActuallyToBlack")
 			buttonSound.play()
 			await transitionToBlack.animation_finished
 			get_tree().change_scene_to_file("res://Scenes/MainMenu.tscn")

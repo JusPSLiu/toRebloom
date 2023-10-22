@@ -1,8 +1,13 @@
 res://Scenes/Levels/garden_level.tscn
-res://Scenes/PauseMenu.tscn
 res://Scenes/MainMenu.tscn
-res://Scenes/transition_to_black.tscn
-res://audioBuses.tres
+res://Scenes/PauseMenu.tscn
+res://Scenes/dialogue.tscn
 res://Scripts/PauseMenu.gd
-res://Scenes/Levels/PlayerCharacter.gd
+res://Scripts/MainMenu.gd
 res://Scenes/Levels/DialogueController.gd
+res://Scenes/robertson.tscn
+res://Scenes/Splashscreen/splashscreen.tscn
+res://Scenes/Levels/PlayerCharacter.gd
+res://Scenes/transition_to_black.tscn
+res://Scripts/splashscreen.gd
+res://Scenes/transition.tscn

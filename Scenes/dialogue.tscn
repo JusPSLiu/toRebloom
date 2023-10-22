@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://fc383qi0emqr"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/DialogueController.gd" id="1_o5145"]
+[ext_resource type="AudioStream" uid="uid://cx8trihirhvyy" path="res://Sounds/UI/pressbutton.ogg" id="2_oocnp"]
+
+[node name="Dialogue" type="ColorRect" node_paths=PackedStringArray("buttonSounds", "text", "speakerName", "dialoguePlayer")]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -283.0
+offset_right = -100.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 0.419608)
+script = ExtResource("1_o5145")
+buttonSounds = NodePath("buttonSounds")
+text = NodePath("TextBox")
+speakerName = NodePath("name")
+dialoguePlayer = NodePath("DialoguePlayer")
+lettersPerSecond = 30.0
+
+[node name="darkerrect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.52549)
+
+[node name="name" type="Label" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 175.0
+offset_right = 217.0
+offset_bottom = 213.0
+theme_override_font_sizes/font_size = 25
+text = "COMMANDER"
+horizontal_alignment = 1
+
+[node name="TextBox" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 30.0
+offset_right = 1061.0
+offset_bottom = 203.0
+theme_override_font_sizes/normal_font_size = 25
+text = "poooooooooooooooo"
+scroll_active = false
+
+[node name="DialoguePlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Sounds"
+
+[node name="buttonSounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_oocnp")
+bus = &"Sounds"
