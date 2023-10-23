@@ -1,11 +1,10 @@
-res://Scenes/MainMenu.tscn
-res://Scenes/Levels/DialogueController.gd
 res://Scenes/robertson.tscn
+res://Scenes/Levels/DialogueController.gd
+res://Scenes/Levels/PlayerCharacter.gd
+res://Scenes/MainMenu.tscn
 res://Scenes/Levels/garden_level.tscn
+res://Scenes/Levels/first_level.tscn
 res://Scenes/PauseMenu.tscn
 res://Scenes/transition.tscn
 res://Scenes/dialogue.tscn
-res://Scenes/Levels/PlayerCharacter.gd
-res://audioBuses.tres
-res://Scenes/Levels/first_level.tscn
 res://Scenes/Levels/NextLevelTrigger.gd

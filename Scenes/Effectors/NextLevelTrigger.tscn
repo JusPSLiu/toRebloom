@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx8letjk1q7r0"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/NextLevelTrigger.gd" id="1_kl1qx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdnt0"]
+size = Vector2(64, 440)
+
+[node name="NextLevelTrigger" type="Area2D" node_paths=PackedStringArray("transition", "musicAnimator", "pauseMenu")]
+position = Vector2(6529, 100)
+script = ExtResource("1_kl1qx")
+nextLevelName = "first"
+transition = NodePath("")
+musicAnimator = NodePath("")
+pauseMenu = NodePath("")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xdnt0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

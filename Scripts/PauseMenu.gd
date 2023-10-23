@@ -61,7 +61,7 @@ func togglePauseFall():
 	get_tree().paused = !get_tree().paused
 	visible = !visible
 	if (get_tree().paused):
-		pauseButton.text = "▶"
+		pauseButton.text = ">"
 	else:
 		pauseButton.text = "II"
 

@@ -25,6 +25,8 @@ var prevPositionx = 0
 var deletedPrompt = false
 # make a queue for unfinished commands
 var commandList : Array[int]
+# a boolean for whether or not the level has been finished
+var stopShouting : bool
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -36,7 +38,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta * 1.5
 		if (coyoteTimer > 0):
 			coyoteTimer -= delta
-	else:
+	elif (!stopShouting): #do this next part if you haven't won the level yet
 		coyoteTimer = coyoteTime
 		if (movingRight != wantToMoveRight):
 			scale.x *= -1
@@ -46,7 +48,7 @@ func _physics_process(delta):
 			if (moving):
 				bodyAnimationPlayer.play("walking")
 			else:
-				bodyAnimationPlayer.stop()
+				bodyAnimationPlayer.play("RESET")
 		#if on the ground, then can change direction
 		movingRight = wantToMoveRight
 	
@@ -70,15 +72,15 @@ func _physics_process(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_up"):
 		if (!commandList.has(3)):
-			commandList.push_back(3) #3 means jump
+			addCommand(3) #3 means jump
 
 	# Get the input direction and handle the desired movement
 	if Input.is_action_just_pressed("ui_right"):
 		if (!commandList.has(1)):
-			commandList.push_back(1) #1 means right
+			addCommand(1) #1 means right
 	elif Input.is_action_just_pressed("ui_left"):
 		if (!commandList.has(2)):
-			commandList.push_back(2) #2 means left
+			addCommand(2) #2 means left
 	#elif moving && wantToMove: #this part was frustrating so I removed it
 		#if (position.x == prevPositionx && is_on_floor()):
 			#wantToMove = false
@@ -89,17 +91,19 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_down"):
 		#as long as the last thing wasn't stop then you can add it
 		if (commandList.size() == 0 || !commandList[commandList.size()-1] == 4):
-			commandList.push_back(4) #4 means stop
+			addCommand(4) #4 means stop
 	#actually jump if want to jump :D
 	if (wantToJump && coyoteTimer > 0):
 		wantToJump = false
 		velocity.y = JUMP_VELOCITY
+		coyoteTimer = 0
 	
 	move_and_slide()
 	
 	
 	#if not speaking and next command then shout it
-	if (!shoutPlayer.playing && commandList.size() > 0):
+	if (!shoutPlayer.playing && commandList.size() > 0 && !stopShouting):
+		#actually apply the inputs now. finally.
 		match(commandList[0]):
 			1: # 1 means right
 				#if paying attention then move right
@@ -155,3 +159,19 @@ func _physics_process(delta):
 				wantToMove = false
 				timer = timeToWaitForIgnoring
 		commandList.pop_front()
+
+
+func addCommand(num : int):
+	if (commandList.size() > 0 && num != 3):
+		# if there's a jump, then there's probably some strategy going on
+		# I don't want to interrupt that
+		if (commandList[commandList.size()-1] == 3):
+			commandList.push_back(num)
+			return
+	#so now cancel out all commands that are before since they're not jumps
+	commandList.pop_back()
+	commandList.push_back(num)
+
+
+func disableControl():
+	stopShouting = true

@@ -71,10 +71,10 @@ text = "Resume Game"
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "
-INSTRUCTIONS:  ▷ Right
-(Arrow keys)        ◁ Left
-                               △ Jump
-                               ▽ Stop"
+INSTRUCTIONS:  > Right
+(Arrow keys)        < Left
+                               ^ Jump
+                               v Stop"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Sounds"

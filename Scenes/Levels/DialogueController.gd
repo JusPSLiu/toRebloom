@@ -28,7 +28,7 @@ func _process(delta):
 			loadingIn = false
 
 func _input(event : InputEvent):
-	if (event is InputEventKey and event.is_action_released("ui_accept")):
+	if ((event is InputEventKey and event.is_action_released("ui_accept")) or (event is InputEventMouseButton and event.is_action_pressed("clicky"))):
 		if (loadingIn):
 			textCurrentlyDisplayed = text.visible_characters * 0.4
 		else:
@@ -101,7 +101,7 @@ func changeCurrentDialogue():
 			setSpeaker(0)
 		11:
 			text.text = "Alright, continue your mission."
-			setSpeaker(1)
+			setSpeaker(0)
 		#12 is close
 		_:
 			closeDialogue()

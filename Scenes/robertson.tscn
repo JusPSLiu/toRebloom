@@ -76,110 +76,6 @@ _data = {
 "turnHeadToward": SubResource("Animation_i41g6")
 }
 
-[sub_resource type="Animation" id="Animation_wm715"]
-resource_name = "waling"
-length = 1.2
-loop_mode = 1
-tracks/0/type = "bezier"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Rob\'sBody/ArmR:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(86, 0, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/1/type = "bezier"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Rob\'sBody/LegR:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0, 0, 0, 0, 0, 0.715598, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, -0.531, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2)
-}
-tracks/2/type = "bezier"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Rob\'sBody/LegL:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0, 0, 0, 0, 0, -0.530789, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, 0.716, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2)
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Rob\'sBody/ArmR:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(2.49582, 0, 0, 0, 0, 3.16079, -0.25, 0, 0.25, 0, 2.49582, 0, 0, 0, 0, 1.41191, -0.25, 0, 0.25, 0, 2.49582, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../Rob\'sBody/ArmL:rotation")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0.653105, 0, 0, 0, 0, 0, -0.25, 0, 0.25, 0, 0.653105, 0, 0, 0, 0, 1.306, -0.25, 0, 0.25, 0, 0.653105, 0, 0, 0, 0),
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../Rob\'sBody/Body:scale:x")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0.8, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2)
-}
-tracks/6/type = "bezier"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Rob\'sBody/ArmL:position:x")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(120, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/7/type = "bezier"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Rob\'sBody/LegR:position:x")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(101, -0.25, 0, 0, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/8/type = "bezier"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../Rob\'sBody/LegL:position:x")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(114, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-
 [sub_resource type="Animation" id="Animation_q5gbf"]
 resource_name = "RESET"
 tracks/0/type = "bezier"
@@ -190,7 +86,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(78, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(74, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
@@ -223,7 +119,7 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(178.916, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(178.467, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/4/type = "bezier"
@@ -234,7 +130,7 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(0.595157, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/5/type = "bezier"
@@ -251,35 +147,96 @@ tracks/5/keys = {
 tracks/6/type = "bezier"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../Rob\'sBody/ArmL:position:x")
+tracks/6/path = NodePath("../Rob\'sBody/LegR:position:x")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(125, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(81, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/7/type = "bezier"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../Rob\'sBody/LegR:position:x")
+tracks/7/path = NodePath("../Rob\'sBody/LegL:position:x")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(94, -0.25, 0, 0.25, 0),
+"points": PackedFloat32Array(121, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/8/type = "bezier"
+tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../Rob\'sBody/LegL:position:x")
+tracks/8/path = NodePath("../Rob\'sBody/LegL:frame")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(121, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Rob\'sBody/LegR:frame")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Rob\'sBody/LegR:flip_h")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Rob\'sBody/ArmL:z_index")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Rob\'sBody/ArmL:flip_h")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../Rob\'sBody/ArmL:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(174, 483)]
 }
 
 [sub_resource type="Animation" id="Animation_pnck6"]
@@ -362,6 +319,171 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0)
 }
 
+[sub_resource type="Animation" id="Animation_wm715"]
+resource_name = "waling"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Rob\'sBody/ArmR:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(86, 0, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Rob\'sBody/LegR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0, 0, 0.715598, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, -0.531, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Rob\'sBody/LegL:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, 0, 0, 0, 0, -0.530789, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0, 0.716, -0.25, 0, 0.25, 0, 0, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Rob\'sBody/ArmR:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(2.49582, 0, 0, 0, 0, 3.16079, -0.25, 0, 0.25, 0, 2.49582, 0, 0, 0, 0, 1.41191, -0.25, 0, 0.25, 0, 2.49582, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Rob\'sBody/ArmL:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-0.908, 0, 0, 0, 0, -1.561, -0.25, 0, 0.25, 0, -0.908, 0, 0, 0, 0, -0.255, -0.25, 0, 0.25, 0, -0.908, 0, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Rob\'sBody/Body:scale:x")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.8, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0, 0.8, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Rob\'sBody/LegR:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(101, -0.25, 0, 0, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Rob\'sBody/LegL:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(114, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Rob\'sBody/LegL:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Rob\'sBody/LegR:frame")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Rob\'sBody/LegR:flip_h")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Rob\'sBody/ArmL:z_index")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Rob\'sBody/ArmL:flip_h")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../Rob\'sBody/ArmL:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 451)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_adn1c"]
 _data = {
 "RESET": SubResource("Animation_q5gbf"),
@@ -376,7 +498,7 @@ height = 249.0
 [node name="Robertson" type="CharacterBody2D" node_paths=PackedStringArray("instructions", "shoutPlayer", "headAnimationPlayer", "bodyAnimationPlayer")]
 position = Vector2(102, 640)
 script = ExtResource("1_g1ddu")
-timeToWaitForIgnoring = 1.4
+timeToWaitForIgnoring = 1.0
 instructions = NodePath("Prompt")
 shoutPlayer = NodePath("Shouty")
 headAnimationPlayer = NodePath("HeadAnimationPlayer")
@@ -391,6 +513,7 @@ libraries = {
 
 [node name="BodyAnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../HeadAnimationPlayer")
+autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_adn1c")
 }
@@ -403,9 +526,13 @@ shape = SubResource("CapsuleShape2D_78d5h")
 position = Vector2(-102, -640)
 
 [node name="ArmL" type="Sprite2D" parent="Rob\'sBody"]
-position = Vector2(125, 452.5)
+z_index = 1
+position = Vector2(174, 483)
+rotation = 0.595157
+scale = Vector2(-1, 1)
 texture = ExtResource("4_3weqa")
 offset = Vector2(28, 32)
+flip_h = true
 
 [node name="Body" type="Sprite2D" parent="Rob\'sBody"]
 position = Vector2(101, 490)
@@ -422,18 +549,17 @@ position = Vector2(121, 537)
 texture = ExtResource("5_0vhjy")
 offset = Vector2(0, 48)
 hframes = 2
-frame = 1
 
 [node name="LegR" type="Sprite2D" parent="Rob\'sBody"]
-position = Vector2(94, 537)
+position = Vector2(81, 537)
 texture = ExtResource("5_0vhjy")
 offset = Vector2(0, 48)
+flip_h = true
 hframes = 2
-frame = 1
 
 [node name="ArmR" type="Sprite2D" parent="Rob\'sBody"]
-position = Vector2(78, 450)
-rotation = 178.916
+position = Vector2(74, 453)
+rotation = 178.467
 scale = Vector2(1, -1)
 texture = ExtResource("4_3weqa")
 offset = Vector2(28, 32)
