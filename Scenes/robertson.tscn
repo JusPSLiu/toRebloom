@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c7r4c1mj2jcnh"]
+[gd_scene load_steps=17 format=3 uid="uid://c7r4c1mj2jcnh"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/PlayerCharacter.gd" id="1_g1ddu"]
 [ext_resource type="Texture2D" uid="uid://cg38fuk8rpd4e" path="res://Art/Spritesheets/playerBodyParts/body.png" id="3_246wv"]
@@ -495,14 +495,21 @@ _data = {
 radius = 36.0
 height = 249.0
 
-[node name="Robertson" type="CharacterBody2D" node_paths=PackedStringArray("instructions", "shoutPlayer", "headAnimationPlayer", "bodyAnimationPlayer")]
+[sub_resource type="Gradient" id="Gradient_sne1e"]
+offsets = PackedFloat32Array(0, 0.426273, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.970509, 0.970509, 0.970509, 1, 1, 1, 1, 1)
+
+[node name="Robertson" type="CharacterBody2D" node_paths=PackedStringArray("instructions", "shoutPlayer", "soundPlayer", "headAnimationPlayer", "bodyAnimationPlayer", "body", "deathParticle")]
 position = Vector2(102, 640)
 script = ExtResource("1_g1ddu")
 timeToWaitForIgnoring = 1.0
 instructions = NodePath("Prompt")
 shoutPlayer = NodePath("Shouty")
+soundPlayer = NodePath("SoundPlayer")
 headAnimationPlayer = NodePath("HeadAnimationPlayer")
 bodyAnimationPlayer = NodePath("BodyAnimationPlayer")
+body = NodePath("Rob\'sBody")
+deathParticle = NodePath("CPUParticles2D")
 JUMP_VELOCITY = -1000.0
 
 [node name="HeadAnimationPlayer" type="AnimationPlayer" parent="."]
@@ -569,7 +576,7 @@ position = Vector2(0, -142)
 limit_top = 0
 limit_bottom = 0
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_c4pui")
 
 [node name="Prompt" type="Label" parent="."]
@@ -588,3 +595,20 @@ v Stop"
 [node name="Shouty" type="AudioStreamPlayer" parent="."]
 volume_db = 5.0
 bus = &"Sounds"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -142)
+emitting = false
+amount = 24
+one_shot = true
+explosiveness = 0.95
+emission_shape = 3
+emission_rect_extents = Vector2(32, 32)
+direction = Vector2(0, -100)
+spread = 180.0
+initial_velocity_min = 130.39
+initial_velocity_max = 400.0
+scale_amount_min = 7.0
+scale_amount_max = 7.0
+color = Color(0.490196, 0, 0.490196, 1)
+color_initial_ramp = SubResource("Gradient_sne1e")

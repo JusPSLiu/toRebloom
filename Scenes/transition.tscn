@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxn3l6562njda"]
+[gd_scene load_steps=7 format=3 uid="uid://dxn3l6562njda"]
 
 [sub_resource type="Animation" id="Animation_8rgfm"]
 resource_name = "LoadIn"
@@ -108,11 +108,81 @@ tracks/2/keys = {
 "values": [Color(0, 0, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_l0cia"]
+resource_name = "deathReset"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 0.8),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector2(0, -737), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ee4kk"]
+resource_name = "deathResetUncover"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 737)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xunlf"]
 _data = {
 "LoadIn": SubResource("Animation_8rgfm"),
 "SlideFromBlack": SubResource("Animation_sfcc1"),
-"SlideToBlack": SubResource("Animation_fwbnv")
+"SlideToBlack": SubResource("Animation_fwbnv"),
+"deathReset": SubResource("Animation_l0cia"),
+"deathResetUncover": SubResource("Animation_ee4kk")
 }
 
 [node name="Transition" type="AnimationPlayer"]
@@ -128,6 +198,8 @@ process_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -737.0
+offset_bottom = -737.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(640, 368)

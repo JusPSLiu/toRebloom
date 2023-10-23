@@ -4,8 +4,13 @@ extends CharacterBody2D
 @export var timeToWaitForIgnoring : float
 @export var instructions : Label
 @export var shoutPlayer : AudioStreamPlayer
+@export var soundPlayer : AudioStreamPlayer2D
 @export var headAnimationPlayer : AnimationPlayer
 @export var bodyAnimationPlayer : AnimationPlayer
+@export var body : Node2D
+@export var deathParticle : CPUParticles2D
+@export var pauseMenu : Control
+@export var transition : AnimationPlayer
 @export var JUMP_VELOCITY = -600.0
 @export var coyoteTime = 0.4
 const SPEED = 300.0
@@ -30,7 +35,8 @@ var stopShouting : bool
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
+#checkpoint variables
+var checkpointLocation : Vector2
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -175,3 +181,33 @@ func addCommand(num : int):
 
 func disableControl():
 	stopShouting = true
+
+func setLastCheckpointLocation(location : Vector2):
+	checkpointLocation = location
+
+func die():
+	#make sure you don't move when you die
+	moving = false
+	wantToMove = false
+	stopShouting = true
+	bodyAnimationPlayer.play("RESET")
+	
+	#emit particles, disable pause menu
+	body.hide()
+	deathParticle.emitting = true
+	soundPlayer.set_stream(load("res://Sounds/death.ogg"))
+	soundPlayer.play()
+	pauseMenu.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	#play transition
+	transition.play("deathReset")
+	await transition.animation_finished
+	
+	#move and slide
+	body.show()
+	position = checkpointLocation
+	transition.play("deathResetUncover")
+	await transition.animation_finished
+	#reenable pausing
+	pauseMenu.process_mode = Node.PROCESS_MODE_ALWAYS
+	stopShouting = false

@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5g5msxateuky"]
+
+[ext_resource type="Texture2D" uid="uid://sfqawvgxiqrd" path="res://Art/Effectors/laserblock.png" id="1_tnvd2"]
+[ext_resource type="Script" path="res://Scenes/Levels/LaserScript.gd" id="2_gfumt"]
+[ext_resource type="AudioStream" uid="uid://d1uy13x37chg" path="res://Sounds/earpiercingLaserBwee.wav" id="3_58npq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2xr0"]
+size = Vector2(6, 611)
+
+[sub_resource type="Animation" id="Animation_a0n40"]
+resource_name = "Bwee"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-60.0, 0.0, -14.0]
+}
+
+[sub_resource type="Animation" id="Animation_an2m6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-14.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_jtbs4"]
+resource_name = "fadeBweeOut"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-14.0, -60.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tl1ar"]
+_data = {
+"Bwee": SubResource("Animation_a0n40"),
+"RESET": SubResource("Animation_an2m6"),
+"fadeBweeOut": SubResource("Animation_jtbs4")
+}
+
+[node name="Laserblock" type="Sprite2D" node_paths=PackedStringArray("laserLight", "audioFader")]
+texture = ExtResource("1_tnvd2")
+script = ExtResource("2_gfumt")
+laserLight = NodePath("LaserColor")
+audioFader = NodePath("AudioStreamPlayer2D/AnimationPlayer")
+
+[node name="LaserHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LaserHitbox"]
+position = Vector2(0, -334.5)
+shape = SubResource("RectangleShape2D_v2xr0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_58npq")
+volume_db = -14.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AudioStreamPlayer2D"]
+libraries = {
+"": SubResource("AnimationLibrary_tl1ar")
+}
+
+[node name="LaserColor" type="ColorRect" parent="."]
+offset_left = -3.0
+offset_top = -623.0
+offset_right = 3.0
+offset_bottom = -26.0
+color = Color(2, 1, 1, 1)
+
+[connection signal="body_entered" from="LaserHitbox" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="LaserHitbox" to="." method="_on_laser_hitbox_body_exited"]
