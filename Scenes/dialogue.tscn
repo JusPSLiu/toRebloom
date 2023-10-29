@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://fc383qi0emqr"]
+[gd_scene load_steps=4 format=3 uid="uid://fc383qi0emqr"]
 
 [ext_resource type="Script" path="res://Scripts/DialogueController.gd" id="1_o5145"]
 [ext_resource type="AudioStream" uid="uid://ca1px4h55rl0a" path="res://Sounds/dialogue/dia0.ogg" id="2_q14e2"]
+[ext_resource type="Texture2D" uid="uid://bpk422o7jorab" path="res://Art/3dseeds.png" id="3_fjm3k"]
 
-[node name="Dialogue" type="ColorRect" node_paths=PackedStringArray("buttonSounds", "text", "speakerName", "dialoguePlayer")]
+[node name="Dialogue" type="ColorRect" node_paths=PackedStringArray("text", "speakerName", "dialoguePlayer", "ImageDisplay")]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -16,11 +17,11 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 0.419608)
 script = ExtResource("1_o5145")
-buttonSounds = NodePath("")
 text = NodePath("TextBox")
 speakerName = NodePath("name")
 dialoguePlayer = NodePath("DialoguePlayer")
 lettersPerSecond = 30.0
+ImageDisplay = NodePath("ImageDisplay")
 
 [node name="darkerrect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -59,3 +60,18 @@ scroll_active = false
 stream = ExtResource("2_q14e2")
 volume_db = 12.0
 bus = &"Sounds"
+
+[node name="ImageDisplay" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 850.0
+offset_top = 75.0
+offset_right = 1060.0
+offset_bottom = 213.0
+color = Color(0, 0, 0, 0.835294)
+
+[node name="TextureRect" type="TextureRect" parent="ImageDisplay"]
+layout_mode = 0
+offset_right = 227.0
+offset_bottom = 158.0
+texture = ExtResource("3_fjm3k")

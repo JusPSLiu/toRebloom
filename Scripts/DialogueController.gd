@@ -7,6 +7,7 @@ extends ColorRect
 @export var lettersPerSecond : float
 @export var currentDialogue : int
 @export var PauseMenu : Control
+@export var ImageDisplay : ColorRect
 
 var textCurrentlyDisplayed : float
 var loadingIn : bool
@@ -63,7 +64,7 @@ func changeCurrentDialogue():
 	#reset the visibility
 	text.visible_characters = 0
 	textCurrentlyDisplayed = 0
-	if (currentDialogue != 8 && currentDialogue != 12 && currentDialogue != 15 && currentDialogue < 21):
+	if (currentDialogue != 8 && currentDialogue != 12 && currentDialogue != 15 && currentDialogue != 21 && currentDialogue != 24 && currentDialogue < 33):
 		dialoguePlayer.set_stream(load("res://Sounds/dialogue/dia"+(str(currentDialogue))+".ogg"))
 		dialoguePlayer.play()
 	# update the dialogue
@@ -125,6 +126,42 @@ func changeCurrentDialogue():
 		20:
 			text.text = "Um, if you say so."
 			setSpeaker(1)
+		#21 is close
+		22:
+			text.text = "Do you even know what you're doing?! These are seeds of death!"
+			setSpeaker(2)
+		23:
+			text.text = "They'll bring warmth, not death!"
+			setSpeaker(1)
+		24:
+			text.text = "Wait, you got the seeds?!"
+			setSpeaker(0)
+		25:
+			text.text = "HOLY- I DIDNT REALIZE YOU WOULD BE ABLE TO DO THAT ACTUALLY! (stammers)"
+			setSpeaker(0)
+		26:
+			text.text = "WELL, OUR MISSION IS COMPLETE! HEAD BACK TO THE GARDEN NOW!"
+			setSpeaker(0)
+		27:
+			text.text = "Um, I don't think these are seeds."
+			setSpeaker(1)
+		28:
+			text.text = "What?! What do you have then?"
+			setSpeaker(0)
+		29:
+			text.text = "Um, I think it's a decoy. Looks 3D printed."
+			ImageDisplay.show()
+			setSpeaker(1)
+		30:
+			ImageDisplay.hide()
+			text.text = "Ugh, change of plans. They must be storing it in their other location. Head there."
+			setSpeaker(0)
+		31:
+			text.text = "Um, I think I heard you, but just to be sure, you said-"
+			setSpeaker(1)
+		32:
+			text.text = "HEAD! TO THEIR OTHER! LOCATION!"
+			setSpeaker(0)
 		_:
 			closeDialogue()
 
