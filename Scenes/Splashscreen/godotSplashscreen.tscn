@@ -505,6 +505,7 @@ initial_velocity_min = 500.0
 initial_velocity_max = 800.0
 scale_amount_min = 5.0
 scale_amount_max = 5.0
+color = Color(1, 0.662745, 0.301961, 1)
 
 [node name="explodeablePolygon(delet)" type="TextureRect" parent="."]
 visible = false

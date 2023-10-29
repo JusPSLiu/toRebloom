@@ -1,6 +1,6 @@
 extends Node
 
-var unlockedLevel : int = 0
+var unlockedLevel : int = 1
 
 
 func _ready():

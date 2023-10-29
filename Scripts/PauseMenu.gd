@@ -12,6 +12,7 @@ signal close_settings
 #settingUp variable so when loading, doesn't play sounds
 var settingUp : bool = true
 var timer : float = 0
+var disablePausing : bool = false
 
 func _ready():
 	#make music and sound variables
@@ -57,16 +58,18 @@ func _input(event: InputEvent) -> void:
 				togglePauseFall();
 
 func togglePauseFall():
-	buttonSoundPlayer.play()
-	get_tree().paused = !get_tree().paused
-	visible = !visible
-	if (get_tree().paused):
-		pauseButton.text = ">"
-	else:
-		pauseButton.text = "II"
+	if (!disablePausing):
+		buttonSoundPlayer.play()
+		get_tree().paused = !get_tree().paused
+		visible = !visible
+		if (get_tree().paused):
+			pauseButton.text = ">"
+		else:
+			pauseButton.text = "II"
 
 
 func _on_title_pressed():
+	buttonSoundPlayer.play()
 	get_tree().paused = false
 	transition.play("SlideToBlack")
 	await transition.animation_finished

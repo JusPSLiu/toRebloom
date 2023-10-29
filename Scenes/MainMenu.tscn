@@ -7,8 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://hux05ba36djc" path="res://Art/Buttons/PlayButtonClick.png" id="5_je4rf"]
 [ext_resource type="Texture2D" uid="uid://bephd0oly78q4" path="res://Art/Buttons/PlayButtonHover.png" id="6_bukna"]
 [ext_resource type="AudioStream" uid="uid://124agfr8t34o" path="res://Sounds/Music/title.ogg" id="7_pyag1"]
+[ext_resource type="Script" path="res://Scripts/fx/MusicPlayer.gd" id="8_wiywy"]
 [ext_resource type="AudioStream" uid="uid://cx8trihirhvyy" path="res://Sounds/UI/pressbutton.ogg" id="9_3e5ty"]
-[ext_resource type="Script" path="res://Scripts/MusicPlayer.gd" id="9_6cn6a"]
+[ext_resource type="PackedScene" uid="uid://dxn3l6562njda" path="res://Scenes/transition.tscn" id="10_yp8pp"]
 
 [sub_resource type="Animation" id="Animation_c73li"]
 resource_name = "fadeBackIn"
@@ -48,81 +49,13 @@ _data = {
 "fastFade": SubResource("Animation_owlrv")
 }
 
-[sub_resource type="Animation" id="Animation_sfcc1"]
-resource_name = "SlideFromBlack"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(3, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
+[sub_resource type="Theme" id="Theme_5mhb1"]
+/colors/black = Color(0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_fwbnv"]
-resource_name = "SlideToBlack"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(0.25, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
-}
+[sub_resource type="Theme" id="Theme_vk737"]
+/colors/backColor = Color(0, 0, 0, 1)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xunlf"]
-_data = {
-"SlideFromBlack": SubResource("Animation_sfcc1"),
-"SlideToBlack": SubResource("Animation_fwbnv")
-}
-
-[node name="MainMenu" type="Control" node_paths=PackedStringArray("titleScreen", "buttonSound", "transition", "musicPlayer")]
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("titleScreen", "levelSelect", "buttonSound", "transition", "levelSelectButtons", "musicPlayer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,8 +64,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ty1qf")
 titleScreen = NodePath("TitleScreen")
+levelSelect = NodePath("LevelSelectMenu")
 buttonSound = NodePath("ButtonPlayer")
-transition = NodePath("TransitionToBlack/AnimationPlayer")
+transition = NodePath("Transition")
+levelSelectButtons = [NodePath("LevelSelectMenu/VBoxContainer/PathLevel"), NodePath("LevelSelectMenu/VBoxContainer/FacilLevel"), NodePath("LevelSelectMenu/VBoxContainer/ToLabLevel"), NodePath("LevelSelectMenu/VBoxContainer/LabLevel")]
 musicPlayer = NodePath("MusicPlayer")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -180,7 +115,7 @@ stream = ExtResource("7_pyag1")
 volume_db = -80.0
 autoplay = true
 bus = &"Music"
-script = ExtResource("9_6cn6a")
+script = ExtResource("8_wiywy")
 animationPlayer = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MusicPlayer"]
@@ -193,20 +128,117 @@ libraries = {
 stream = ExtResource("9_3e5ty")
 bus = &"Sounds"
 
-[node name="TransitionToBlack" type="ColorRect" parent="."]
+[node name="Transition" parent="." instance=ExtResource("10_yp8pp")]
+
+[node name="LevelSelectMenu" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(640, 368)
-color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TransitionToBlack"]
-autoplay = "SlideFromBlack"
-libraries = {
-"": SubResource("AnimationLibrary_xunlf")
-}
+[node name="ColorRect" type="ColorRect" parent="LevelSelectMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 314.0
+offset_right = -314.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="Label" type="Label" parent="LevelSelectMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -56.5
+offset_top = 100.0
+offset_right = 56.5
+offset_bottom = 126.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.72549, 0.72549, 0.72549, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 50
+text = "Chapter Select"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelectMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -159.0
+offset_right = 300.0
+offset_bottom = 159.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="GardenButton" type="Button" parent="LevelSelectMenu/VBoxContainer"]
+layout_mode = 2
+focus_mode = 0
+theme = SubResource("Theme_5mhb1")
+theme_override_font_sizes/font_size = 40
+text = "                1. The Garden"
+alignment = 0
+
+[node name="PathLevel" type="Button" parent="LevelSelectMenu/VBoxContainer"]
+visible = false
+layout_mode = 2
+focus_neighbor_top = NodePath("../GardenButton")
+focus_neighbor_bottom = NodePath("../FacilLevel")
+focus_mode = 0
+theme = SubResource("Theme_vk737")
+theme_override_font_sizes/font_size = 40
+text = "                2. Path to Facility"
+alignment = 0
+
+[node name="FacilLevel" type="Button" parent="LevelSelectMenu/VBoxContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+text = "                3. The Facility"
+alignment = 0
+
+[node name="ToLabLevel" type="Button" parent="LevelSelectMenu/VBoxContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+text = "                4. To The Lab"
+alignment = 0
+
+[node name="LabLevel" type="Button" parent="LevelSelectMenu/VBoxContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 40
+text = "                5. The Lab"
+alignment = 0
+
+[node name="BackButton" type="Button" parent="LevelSelectMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 340.0
+offset_top = -100.0
+offset_right = 564.0
+offset_bottom = -50.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Back to Title"
 
 [connection signal="pressed" from="TitleScreen/VBoxContainer2/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="LevelSelectMenu/VBoxContainer/GardenButton" to="." method="_on_level_selected" binds= [0]]
+[connection signal="pressed" from="LevelSelectMenu/VBoxContainer/PathLevel" to="." method="_on_level_selected" binds= [1]]
+[connection signal="pressed" from="LevelSelectMenu/VBoxContainer/FacilLevel" to="." method="_on_level_selected" binds= [2]]
+[connection signal="pressed" from="LevelSelectMenu/BackButton" to="." method="_on_back_button_pressed"]

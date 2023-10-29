@@ -27,6 +27,7 @@ func _process(delta):
 
 func _input(event : InputEvent):
 	if (event is InputEventKey and event.keycode == KEY_ESCAPE) or (event is InputEventMouseButton and event.is_double_click()):
+		if (!transitionToBlack.is_playing()):
 			transitionToBlack.play("fadeActuallyToBlack")
 			buttonSound.play()
 			await transitionToBlack.animation_finished

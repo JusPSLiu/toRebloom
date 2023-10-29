@@ -25,6 +25,7 @@ func _on_animation_player_animation_finished(_anim_name):
 
 func _input(event : InputEvent):
 	if (event is InputEventKey and event.keycode == KEY_ESCAPE) or (event is InputEventMouseButton and event.is_double_click()):
+		if (!transitionToBlack.is_playing()):
 			transitionToBlack.play("FadeToBlack")
 			buttonSound.play()
 			await transitionToBlack.animation_finished

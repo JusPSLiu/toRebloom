@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://b5g5msxateuky"]
+[gd_scene load_steps=20 format=3 uid="uid://b5g5msxateuky"]
 
 [ext_resource type="Texture2D" uid="uid://sfqawvgxiqrd" path="res://Art/Effectors/laserblock.png" id="1_tnvd2"]
-[ext_resource type="Script" path="res://Scenes/Levels/LaserScript.gd" id="2_gfumt"]
+[ext_resource type="Script" path="res://Scripts/Effectors/LaserScript.gd" id="2_gfumt"]
 [ext_resource type="AudioStream" uid="uid://d1uy13x37chg" path="res://Sounds/earpiercingLaserBwee.wav" id="3_58npq"]
+[ext_resource type="Texture2D" uid="uid://ci6ji3mwouxwo" path="res://Art/fx/blinkBright.png" id="4_ic08b"]
+[ext_resource type="Texture2D" uid="uid://dfh0n2jggxewi" path="res://Art/fx/blink.png" id="4_tgioi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v2xr0"]
 size = Vector2(6, 611)
 
-[sub_resource type="Animation" id="Animation_a0n40"]
+[sub_resource type="Animation" id="Animation_ldgee"]
 resource_name = "Bwee"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -34,34 +36,10 @@ tracks/1/keys = {
 "values": [-60.0, 0.0, -14.0]
 }
 
-[sub_resource type="Animation" id="Animation_an2m6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:volume_db")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-14.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
+[sub_resource type="Animation" id="Animation_lpocp"]
+resource_name = "RESET"
 
-[sub_resource type="Animation" id="Animation_jtbs4"]
+[sub_resource type="Animation" id="Animation_m5s2h"]
 resource_name = "fadeBweeOut"
 length = 0.4
 tracks/0/type = "value"
@@ -77,18 +55,454 @@ tracks/0/keys = {
 "values": [-14.0, -60.0]
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y5bna"]
+_data = {
+"Bwee": SubResource("Animation_ldgee"),
+"RESET": SubResource("Animation_lpocp"),
+"fadeBweeOut": SubResource("Animation_m5s2h")
+}
+
+[sub_resource type="Animation" id="Animation_a0n40"]
+resource_name = "Bwee"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../TextureRect:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_ic08b")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TextureRect:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(0.4, 0.5, 1),
+"update": 0,
+"values": [Vector2(32, 32), Vector2(96, 96), Vector2(64, 64)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../TextureRect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(0.4, 0.5, 1),
+"update": 0,
+"values": [Vector2(-16, -58), Vector2(-48, -74), Vector2(-32, -58)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../LaserColor:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(0.4, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../LaserColor:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../LaserColor/BrightLaserColor:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../LaserColor/BrightLaserColor:size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 612)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../LaserColor:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -640)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../LaserColor/BrightLaserColor:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_an2m6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_tgioi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TextureRect:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 64)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../LaserColor:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../LaserColor:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../LaserColor/BrightLaserColor:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../LaserColor/BrightLaserColor:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../LaserColor/BrightLaserColor:size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 612)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../LaserColor:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-8, -640)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../TextureRect:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, -60)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../TextureRect:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_hnhkf"]
+resource_name = "blinkyStarting"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_tgioi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2, 1.4, 1.6, 1.7, 1.8, 1.85, 1.9, 1.95, 2),
+"transitions": PackedFloat32Array(4, 12, 4, 12, 4, 12, 4, 12, 4, 12, 4, 12),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TextureRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../TextureRect:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 64)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../TextureRect:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, -58)]
+}
+
+[sub_resource type="Animation" id="Animation_jtbs4"]
+resource_name = "fadeBweeOut"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../TextureRect:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(4, 1),
+"update": 0,
+"values": [Vector2(64, 64), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../TextureRect:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(4, 1),
+"update": 0,
+"values": [Vector2(-32, -58), Vector2(0, -26)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../LaserColor:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../LaserColor:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../LaserColor/BrightLaserColor:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(3, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../LaserColor/BrightLaserColor:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(3, 1),
+"update": 0,
+"values": [Vector2(6, 0), Vector2(8, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tl1ar"]
 _data = {
 "Bwee": SubResource("Animation_a0n40"),
 "RESET": SubResource("Animation_an2m6"),
+"blinkyStarting": SubResource("Animation_hnhkf"),
 "fadeBweeOut": SubResource("Animation_jtbs4")
 }
 
-[node name="Laserblock" type="Sprite2D" node_paths=PackedStringArray("laserLight", "audioFader")]
+[sub_resource type="Gradient" id="Gradient_i0rty"]
+offsets = PackedFloat32Array(0, 0.350943, 0.618868, 1)
+colors = PackedColorArray(1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n1jdl"]
+gradient = SubResource("Gradient_i0rty")
+width = 9
+
+[sub_resource type="Gradient" id="Gradient_ebes2"]
+offsets = PackedFloat32Array(0, 0.558491, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.623529, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rdu66"]
+gradient = SubResource("Gradient_ebes2")
+width = 5
+
+[node name="Laserblock" type="Sprite2D" node_paths=PackedStringArray("animationPlayer", "audioPlayer") groups=["Effector"]]
 texture = ExtResource("1_tnvd2")
 script = ExtResource("2_gfumt")
-laserLight = NodePath("LaserColor")
-audioFader = NodePath("AudioStreamPlayer2D/AnimationPlayer")
+timerLength = 3.0
+animationPlayer = NodePath("LaserAnimationPlayer")
+audioPlayer = NodePath("AudioStreamPlayer2D/SoundPlayer")
 
 [node name="LaserHitbox" type="Area2D" parent="."]
 
@@ -98,19 +512,63 @@ shape = SubResource("RectangleShape2D_v2xr0")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_58npq")
-volume_db = -14.0
+volume_db = -60.0
+bus = &"Sounds"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AudioStreamPlayer2D"]
+[node name="SoundPlayer" type="AnimationPlayer" parent="AudioStreamPlayer2D"]
+libraries = {
+"": SubResource("AnimationLibrary_y5bna")
+}
+
+[node name="LaserAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AudioStreamPlayer2D")
 libraries = {
 "": SubResource("AnimationLibrary_tl1ar")
 }
 
-[node name="LaserColor" type="ColorRect" parent="."]
-offset_left = -3.0
-offset_top = -623.0
-offset_right = 3.0
-offset_bottom = -26.0
-color = Color(2, 1, 1, 1)
+[node name="LaserColor" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = -640.0
+offset_right = -24.0
+offset_bottom = -28.0
+grow_horizontal = 2
+pivot_offset = Vector2(8, 1)
+texture = SubResource("GradientTexture1D_n1jdl")
+expand_mode = 1
 
+[node name="BrightLaserColor" type="TextureRect" parent="LaserColor"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_right = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_rdu66")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -60.0
+offset_right = -32.0
+offset_bottom = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(32, 32)
+texture = ExtResource("4_tgioi")
+expand_mode = 1
+
+[connection signal="area_entered" from="LaserHitbox" to="." method="_on_load"]
+[connection signal="area_exited" from="LaserHitbox" to="." method="_on_unload"]
 [connection signal="body_entered" from="LaserHitbox" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="LaserHitbox" to="." method="_on_laser_hitbox_body_exited"]
